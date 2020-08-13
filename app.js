@@ -35,6 +35,7 @@ window.addEventListener("load", () => {
           locationCity.textContent = data.name;
 
           // Gets the appropriate icon corresponding to the icon code that comes back from the API
+          // Credit to here:  https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
           weatherIcon.innerHTML = `<img src="icons/${weatherIconID}.png">`;
         });
     });
