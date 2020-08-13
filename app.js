@@ -7,6 +7,8 @@ window.addEventListener("load", () => {
   let temperatureDegree = document.querySelector(".temperature-degree");
   let locationCity = document.querySelector(".location-city");
   let weatherIcon = document.querySelector(".weather-icon");
+  let temperatureSection = document.querySelector(".temperature");
+  let temperatureSpan = document.querySelector(".temperature span");
 
   // This will only work is the user opts in to geolocation through the browser
   if (navigator.geolocation) {
@@ -37,6 +39,20 @@ window.addEventListener("load", () => {
           // Gets the appropriate icon corresponding to the icon code that comes back from the API
           // Credit to here:  https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon
           weatherIcon.innerHTML = `<img src="icons/${weatherIconID}.png">`;
+
+          // Formula for Celsius
+          let celsius = Math.floor((temperature - 32) * (5 / 9));
+
+          // Change temperature to Celsius/Fahrenheit
+          temperatureSection.addEventListener("click", () => {
+            if (temperatureSpan.textContent === "F") {
+              temperatureSpan.textContent = "C";
+              temperatureDegree.textContent = celsius;
+            } else {
+              temperatureSpan.textContent = "F";
+              temperatureDegree.textContent = temperature;
+            }
+          });
         });
     });
   } else {
