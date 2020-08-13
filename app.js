@@ -6,7 +6,7 @@ window.addEventListener("load", () => {
   );
   let temperatureDegree = document.querySelector(".temperature-degree");
   let locationCity = document.querySelector(".location-city");
-  let locationIcon = document.querySelector(".location-icon");
+  let weatherIcon = document.querySelector(".weather-icon");
 
   // This will only work is the user opts in to geolocation through the browser
   if (navigator.geolocation) {
@@ -25,15 +25,17 @@ window.addEventListener("load", () => {
           return response.json();
         })
         .then((data) => {
-          const { temp } = data.main;
-          const { description, icon } = data.weather[0];
+          const temperature = Math.floor(data.main.temp);
+          const weatherDescription = data.weather[0].description;
+          const weatherIconID = data.weather[0].icon;
+
           // Set DOM elements from the API
-          temperatureDegree.textContent = temp;
-          temperatureDescription.textContent = description;
+          temperatureDegree.textContent = temperature;
+          temperatureDescription.textContent = weatherDescription;
           locationCity.textContent = data.name;
-          // Need to figure out icon stuff...
-          $(".location-icon").html("<img src=' + icon + '>");
-          // locationIcon.textContent = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+
+          // Gets the appropriate icon corresponding to the icon code that comes back from the API
+          weatherIcon.innerHTML = `<img src="icons/${weatherIconID}.png">`;
         });
     });
   } else {
