@@ -78,6 +78,11 @@ function fahrenheitToCelsius(temperature) {
   return ((temperature - 32) * 5) / 9;
 }
 
+// Celsius to Fahrenheit conversion
+function celsiusToFahrenheit(temperature) {
+  return (temperature * 9) / 5 + 32;
+}
+
 // Temperature Value/Unit Change feature
 temperatureValueElement.addEventListener("click", function () {
   if (weather.temperature.value === undefined) return;
