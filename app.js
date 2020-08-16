@@ -47,18 +47,18 @@ function getWeather(latitude, longitude) {
   let api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${key}`;
 
   fetch(api)
-    .then(function (response) {
+    .then((response) => {
       let data = response.json();
       return data;
     })
-    .then(function (data) {
+    .then((data) => {
       weather.temperature.value = Math.floor(data.main.temp);
       weather.description = data.weather[0].description;
       weather.iconId = data.weather[0].icon;
       weather.city = data.name;
       weather.country = data.sys.country;
     })
-    .then(function () {
+    .then(() => {
       displayWeather();
     });
 }
